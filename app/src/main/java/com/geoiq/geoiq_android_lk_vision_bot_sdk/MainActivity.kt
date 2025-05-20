@@ -82,8 +82,8 @@ fun SDKInteractionScreen(modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
 
-    var livekitUrl by remember { mutableStateOf("wss://prod-giva-thcwnog4.livekit.cloud") } // TODO: Replace with your URL
-    var accessToken by remember { mutableStateOf("eyJhbGciOiJIUzI1NiJ9.eyJ2aWRlbyI6eyJyb29tIjoicm9vbS1GU2VYLTJJa0oiLCJyb29tSm9pbiI6dHJ1ZSwiY2FuUHVibGlzaCI6dHJ1ZSwiY2FuUHVibGlzaERhdGEiOnRydWUsImNhblN1YnNjcmliZSI6dHJ1ZX0sImlzcyI6IkFQSWk3OHM0VTk2cWpadSIsImV4cCI6MTc0Nzc2NjA2OSwibmJmIjowLCJzdWIiOiJpZGVudGl0eS0zUXpkIn0.P2fYUQk7fdmCp1F_Wyf-12QRmb6BBlSB_5HorEC79Yc") } // TODO: Replace with your token
+    var livekitUrl by remember { mutableStateOf("") } // TODO: Replace with your URL
+    var accessToken by remember { mutableStateOf("") } // TODO: Replace with your token
 
     var eventLog by remember { mutableStateOf(listOf<String>()) }
     var connectionStatus by remember { mutableStateOf("Disconnected") }
