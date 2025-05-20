@@ -1,0 +1,85 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'maven-publish'
+}
+
+android {
+    namespace 'com.geoiq.lk'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 34
+        
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    def livekit_version = "2.16.0"
+    
+    implementation "io.livekit:livekit-android:$livekit_version"
+    
+    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1'
+    
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                from (components["release"])
+                
+                groupId = 'com.geoiq'
+                artifactId = 'geoiq-lk'
+                version = '1.0.0'
+
+                pom {
+                    name.set("GeoIQ Vision")
+                    description.set("A Vision Android SDK built in Kotlin.")
+                    url.set("https://github.com/yourname/geoiq-vision-sdk")
+                    licenses {
+                        license {
+                            name.set("Apache License 2.0")
+                            url.set("https://www.apache.org/licenses/LICENSE-2.0.html")
+                        }
+                    }
+                    developers {
+                        developer {
+                            id.set("pragatGeoIQ")
+                            name.set("Pragat Pandya")
+                            email.set("pragat@geoiq.io")
+                        }
+                    }
+                    scm {
+                        connection.set("scm:git:git://github.com/pragatGeoIQ/geoiq-vision-sdk.git")
+                        developerConnection.set("scm:git:ssh://github.com:pragatGeoIQ/geoiq-vision-sdk.git")
+                        url.set("https://github.com/pragatGeoIQ/geoiq-vision-sdk")
+                    }
+                }
+            }
+        }
+    }
+}
